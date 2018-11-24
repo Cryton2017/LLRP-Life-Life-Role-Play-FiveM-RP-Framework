@@ -6,6 +6,7 @@ Citizen.CreateThread(function()
 
 	WarMenu.CreateMenu('lifeLike', 'Life Like Menu')
 	WarMenu.CreateSubMenu('Close', 'lifeLike', 'Are you sure?')
+	WarMenu.CreateSubMenu('OnlinePlayers', 'lifeLike', 'Online Players')
 
 	while true do
 		if WarMenu.IsMenuOpened('lifeLike') then
@@ -20,7 +21,8 @@ Citizen.CreateThread(function()
 					-- Do your stuff here if current index was changed (don't forget to check it)
 				end) then
 					-- Do your stuff here if current item was activated
-			elseif WarMenu.MenuButton('Exit', 'Close') then
+			elseif WarMenu.MenuButton('Exit', 'Close')
+			elseif WarMenu.MenuButton('Online Players', 'OnlinePlayers') then
 			end
 
 			WarMenu.Display()
@@ -31,6 +33,13 @@ Citizen.CreateThread(function()
 			end
 
 			WarMenu.Display()
+
+		--If the player opens the OnlinePlayers Menu:
+		elseif WarMenu.IsMenuOpened('OnlinePlayers') then
+
+			if WarMenu.MenuButton('Cryton') then
+			end
+
 		elseif IsControlJustReleased(0, 244) then -- M by default
 			WarMenu.OpenMenu('lifeLike')
 		end
@@ -41,6 +50,6 @@ end)
 
 
 
--- AddEventHandler('onClientMapStart', function()
---     -- 'open the menu' code 
---     end)
+-- AddEventHandler('playerSpawned', function()
+-- 	WarMenu.OpenMenu('lifeLike')
+--   end)
